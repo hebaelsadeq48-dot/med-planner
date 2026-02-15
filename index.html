@@ -14,11 +14,8 @@
         .check-item:checked { background: #fbbf24; }
         .check-item:checked::after { content: '✔'; position: absolute; color: black; font-size: 14px; top: -2px; left: 4px; font-weight: bold; }
         .hidden { display: none !important; }
-        
-        /* تأثير التوهج للإيموجيز */
         .emoji-glow { cursor: pointer; transition: all 0.3s ease; padding: 10px; border-radius: 50%; }
         .emoji-glow:active { transform: scale(1.2); box-shadow: 0 0 20px #fbbf24; background: rgba(251, 191, 36, 0.2); }
-        
         .tab-btn.active { border-bottom: 3px solid #fbbf24; color: #fbbf24; }
     </style>
 </head>
@@ -41,33 +38,34 @@
                 <h2 class="text-2xl font-bold uppercase font-sans">Health Stats</h2>
             </div>
         </div>
+
+        <div class="mt-20 opacity-40 hover:opacity-100 transition">
+            <p class="text-[10px] mb-2 font-sans tracking-widest text-amber-200 uppercase">Live Visitor Stats</p>
+            <img src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fmedhub-zone.github.io%2Fmed-planner%2F&count_bg=%23FBBF24&title_bg=%23555555&title=Visitors" class="mx-auto scale-90">
+        </div>
     </div>
 
     <div id="planner-page" class="hidden max-w-6xl mx-auto">
         <button onclick="showPage('main-menu')" class="text-amber-400 mb-8 font-bold flex items-center gap-2 hover:translate-x-2 transition">
             <i class="fas fa-arrow-right"></i> العودة للرئيسية
         </button>
-        
         <div class="glass p-6 md:p-10 border border-amber-500/20">
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10 border-b border-amber-500/10 pb-8 items-center">
                 <div>
                     <h2 id="today-date" class="text-3xl font-bold text-amber-400">...</h2>
                     <p id="daily-ayah" class="italic mt-3 text-amber-100/70 text-lg">"جارِ تحميل آية اليوم..."</p>
                 </div>
-                
                 <div class="bg-amber-900/30 p-5 rounded-3xl border border-amber-500/40 text-center">
                     <span class="block text-sm text-amber-200 mb-1">سبحة الأذكار</span>
                     <div id="tasbih-count" class="text-4xl font-bold text-amber-400 mb-2">0</div>
                     <button onclick="countTasbih()" class="bg-amber-500 text-black px-10 py-2 rounded-full font-bold active:scale-95 transition shadow-lg">سبّح</button>
                 </div>
-
                 <div class="flex gap-4 justify-center">
                     <span class="emoji-glow text-3xl">🌙</span>
                     <span class="emoji-glow text-3xl">🕌</span>
                     <span class="emoji-glow text-3xl">🕯️</span>
                 </div>
             </div>
-
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
                 <div class="space-y-8">
                     <section class="glass p-6 border-amber-500/10">
@@ -78,7 +76,6 @@
                             <input type="text" placeholder="وصلت لجزء كم؟" class="bg-transparent border-b border-amber-500/20 w-full p-2 outline-none italic text-amber-100/50">
                         </div>
                     </section>
-
                     <section>
                         <h3 class="text-xl font-bold text-amber-400 mb-4 flex items-center gap-2"><i class="fas fa-tasks"></i> خطة المذاكرة</h3>
                         <div id="tasks-container" class="space-y-3">
@@ -90,21 +87,13 @@
                         <button onclick="addRow()" class="mt-4 text-amber-400 font-bold hover:text-white transition">+ إضافة سطر جديد</button>
                     </section>
                 </div>
-
                 <div class="space-y-6">
                     <div class="glass p-6 border-amber-500/20 bg-amber-900/10">
                         <div class="flex gap-4 mb-4 border-b border-white/10 pb-2">
                             <button onclick="showAzkar('morning')" id="btn-morning" class="tab-btn active font-bold">أذكار الصباح</button>
                             <button onclick="showAzkar('evening')" id="btn-evening" class="tab-btn font-bold">أذكار المساء</button>
                         </div>
-                        <div id="azkar-content" class="text-sm leading-relaxed text-amber-100/80 h-32 overflow-y-auto italic">
-                            أصبحنا وأصبح الملك لله والحمد لله..
-                        </div>
-                    </div>
-
-                    <div class="bg-white/5 p-6 rounded-3xl border border-white/10">
-                        <h4 class="text-amber-300 font-bold mb-3 italic text-xl">نصيحة اليوم:</h4>
-                        <p id="daily-tip" class="text-amber-100/80 leading-relaxed italic text-lg">جارِ التحميل...</p>
+                        <div id="azkar-content" class="text-sm leading-relaxed text-amber-100/80 h-32 overflow-y-auto italic">أصبحنا وأصبح الملك لله والحمد لله..</div>
                     </div>
                 </div>
             </div>
@@ -113,7 +102,7 @@
 
     <div id="timer-page" class="hidden flex flex-col items-center justify-center min-h-[80vh]">
         <button onclick="showPage('main-menu')" class="text-sky-400 mb-12 text-2xl font-bold flex items-center gap-3 hover:scale-105 transition"><i class="fas fa-home"></i> العودة للرئيسية</button>
-        <div id="display" class="text-[12rem] font-bold text-white mb-10 tabular-nums drop-shadow-2xl">25:00</div>
+        <div id="display" class="text-[12rem] font-bold text-white mb-10 tabular-nums drop-shadow-2xl text-center">25:00</div>
         <div class="flex gap-8">
             <button id="t-btn" onclick="startT()" class="bg-sky-600 px-20 py-6 rounded-3xl text-3xl font-bold shadow-2xl hover:bg-sky-500 transition-all active:scale-90">START</button>
             <button onclick="resetT()" class="bg-white/10 px-10 py-6 rounded-3xl text-xl font-bold hover:bg-white/20 transition">RESET</button>
@@ -126,39 +115,35 @@
             <div class="glass p-10 text-center border-red-500/20">
                 <h2 class="text-3xl font-bold mb-8 text-red-500 font-sans italic">BMI CALCULATOR</h2>
                 <div class="space-y-6">
-                    <input type="number" id="w" placeholder="Weight (kg)" class="w-full bg-white/5 p-5 rounded-2xl border border-white/10 text-xl outline-none focus:border-red-500 transition">
-                    <input type="number" id="h" placeholder="Height (cm)" class="w-full bg-white/5 p-5 rounded-2xl border border-white/10 text-xl outline-none focus:border-red-500 transition">
-                    <button onclick="calcBMI()" class="w-full bg-red-600 py-5 rounded-2xl text-2xl font-bold hover:bg-red-700 active:scale-95 transition shadow-lg">ANALYZE</button>
+                    <input type="number" id="w" placeholder="Weight (kg)" class="w-full bg-white/5 p-5 rounded-2xl border border-white/10 text-xl outline-none">
+                    <input type="number" id="h" placeholder="Height (cm)" class="w-full bg-white/5 p-5 rounded-2xl border border-white/10 text-xl outline-none">
+                    <button onclick="calcBMI()" class="w-full bg-red-600 py-5 rounded-2xl text-2xl font-bold hover:bg-red-700 active:scale-95 transition">ANALYZE</button>
                     <div id="res" class="text-7xl font-bold mt-6 text-red-400">-</div>
                     <div id="status-text" class="text-xl font-bold text-white italic opacity-80">Enter data to diagnose</div>
                 </div>
             </div>
-            
             <div class="glass p-8 border-white/10 flex flex-col justify-center">
                 <h3 class="text-2xl font-bold text-red-400 mb-6 font-sans">Diagnosis Guide</h3>
-                <div class="space-y-4 text-sm md:text-base">
-                    <div class="flex justify-between p-3 bg-white/5 rounded-xl border-l-4 border-blue-500"><span>&lt; 18.5</span> <span class="font-bold text-blue-400 text-right">Underweight (نحافة)</span></div>
-                    <div class="flex justify-between p-3 bg-white/5 rounded-xl border-l-4 border-green-500"><span>18.5 – 24.9</span> <span class="font-bold text-green-400 text-right">Ideal Weight (مثالي)</span></div>
-                    <div class="flex justify-between p-3 bg-white/5 rounded-xl border-l-4 border-yellow-500"><span>25 – 29.9</span> <span class="font-bold text-yellow-400 text-right">Overweight (زيادة وزن)</span></div>
-                    <div class="flex justify-between p-3 bg-white/5 rounded-xl border-l-4 border-red-500"><span>&gt; 30</span> <span class="font-bold text-red-500 text-right">Obesity (سمنة مفرطة)</span></div>
+                <div class="space-y-4">
+                    <div class="flex justify-between p-3 bg-white/5 rounded-xl border-l-4 border-blue-500"><span>&lt; 18.5</span> <span class="font-bold text-blue-400">Underweight</span></div>
+                    <div class="flex justify-between p-3 bg-white/5 rounded-xl border-l-4 border-green-500"><span>18.5 – 24.9</span> <span class="font-bold text-green-400">Ideal Weight</span></div>
+                    <div class="flex justify-between p-3 bg-white/5 rounded-xl border-l-4 border-yellow-500"><span>25 – 29.9</span> <span class="font-bold text-yellow-400">Overweight</span></div>
+                    <div class="flex justify-between p-3 bg-white/5 rounded-xl border-l-4 border-red-500"><span>&gt; 30</span> <span class="font-bold text-red-500">Obesity</span></div>
                 </div>
-                <p class="mt-6 text-xs opacity-50 italic">* This guide helps you understand your health level in Ramadan.</p>
             </div>
         </div>
     </div>
 
     <script>
-        // دالة التنقل
         function showPage(id) {
             document.querySelectorAll('[id$="-page"], #main-menu').forEach(p => p.classList.add('hidden'));
             document.getElementById(id).classList.remove('hidden');
             window.scrollTo(0,0);
         }
 
-        // محتوى الأذكار
         const azkar = {
-            morning: "أذكار الصباح: أصبحنا وأصبح الملك لله.. آية الكرسي.. المعوذات.. سيد الاستغفار.. رضيت بالله رباً وبالإسلام ديناً..",
-            evening: "أذكار المساء: أمسينا وأمسى الملك لله.. بسم الله الذي لا يضر مع اسمه شيء.. أعوذ بكلمات الله التامات من شر ما خلق.."
+            morning: "أذكار الصباح: أصبحنا وأصبح الملك لله.. آية الكرسي.. سيد الاستغفار..",
+            evening: "أذكار المساء: أمسينا وأمسى الملك لله.. بسم الله الذي لا يضر مع اسمه شيء.."
         };
         function showAzkar(type) {
             document.getElementById('azkar-content').innerText = azkar[type];
@@ -166,29 +151,22 @@
             document.getElementById('btn-' + type).classList.add('active');
         }
 
-        // البيانات اليومية المتجددة
-        const ayahs = ["وَسَارِعُوا إِلَى مَغْفِرَةٍ مِّن رَّبِّكُمْ", "لَيْلَةُ الْقَدْرِ خَيْرٌ مِّنْ أَلْفِ شَهْرٍ", "فَإِنِّي قَرِيبٌ ۖ أُجِيبُ دَعْوَةَ الدَّاعِ", "وَتزوَّدوا فَإِنَّ خَيْرَ الزَّادِ التَّقْوى"];
-        const tips = ["ابدأي بأصعب مادة بعد الفجر مباشرة.", "قيلولة الظهر (20 دقيقة) كنز للتركيز.", "المذاكرة بنية طلب العلم هي عبادة صامتة.", "كافئي نفسك بقطعة حلوى بسيطة بعد الإنجاز."];
-        const dayIdx = new Date().getDate() % ayahs.length;
-        document.getElementById('daily-ayah').innerText = `"${ayahs[dayIdx]}"`;
-        document.getElementById('daily-tip').innerText = tips[dayIdx];
+        const ayahs = ["وَسَارِعُوا إِلَى مَغْفِرَةٍ مِّن رَّبِّكُمْ", "لَيْلَةُ الْقَدْرِ خَيْرٌ مِّنْ أَلْفِ شَهْرٍ"];
+        document.getElementById('daily-ayah').innerText = `"${ayahs[new Date().getDate() % ayahs.length]}"`;
         document.getElementById('today-date').innerText = "التاريخ: " + new Date().toLocaleDateString('ar-EG', {day:'numeric', month:'long'});
 
-        // السبحة والمهام
         let c = 0; function countTasbih() { c++; document.getElementById('tasbih-count').innerText = c; }
         function addRow() {
             const div = document.createElement('div'); div.className = "flex items-center gap-3 border-b border-white/5 pb-2";
-            div.innerHTML = '<input type="checkbox" class="check-item"><input type="text" placeholder="اكتبي مهمة..." class="bg-transparent w-full outline-none text-white text-lg">';
+            div.innerHTML = '<input type="checkbox" class="check-item"><input type="text" placeholder="..." class="bg-transparent w-full outline-none text-white">';
             document.getElementById('tasks-container').appendChild(div);
         }
 
-        // المؤقت
         let rem = 1500, inv = null;
         function startT() {
-            const btn = document.getElementById('t-btn');
-            if(inv) { clearInterval(inv); inv = null; btn.innerText = "START"; btn.className = btn.className.replace('bg-orange-600', 'bg-sky-600'); }
+            if(inv) { clearInterval(inv); inv = null; document.getElementById('t-btn').innerText = "START"; }
             else {
-                btn.innerText = "PAUSE"; btn.classList.add('bg-orange-600');
+                document.getElementById('t-btn').innerText = "PAUSE";
                 inv = setInterval(() => { rem--; 
                     let m = Math.floor(rem/60), s = rem%60;
                     document.getElementById('display').innerText = `${m}:${s.toString().padStart(2,'0')}`;
@@ -198,22 +176,16 @@
         }
         function resetT() { clearInterval(inv); inv = null; rem = 1500; document.getElementById('display').innerText = "25:00"; document.getElementById('t-btn').innerText = "START"; }
 
-        // BMI والتشخيص
         function calcBMI() {
             const w = parseFloat(document.getElementById('w').value), h = parseFloat(document.getElementById('h').value)/100;
             if(w && h) {
                 const bmi = (w/(h*h)).toFixed(1);
                 document.getElementById('res').innerText = bmi;
-                let s = "";
-                if(bmi < 18.5) s = "Underweight (نحافة)";
-                else if(bmi < 25) s = "Ideal Weight (مثالي)";
-                else if(bmi < 30) s = "Overweight (زيادة وزن)";
-                else s = "Obesity (سمنة مفرطة)";
+                let s = bmi < 18.5 ? "Underweight (نحافة)" : bmi < 25 ? "Ideal (مثالي)" : bmi < 30 ? "Overweight (زيادة)" : "Obesity (سمنة)";
                 document.getElementById('status-text').innerText = s;
+                document.getElementById('status-text').className = "text-xl font-bold italic " + (bmi < 25 ? "text-green-400" : "text-red-400");
             }
         }
-        
-        // تشغيل أذكار الصباح كافتراضي
         showAzkar('morning');
     </script>
 </body>
