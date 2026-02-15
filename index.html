@@ -6,14 +6,12 @@
     <title>MedHub Zone | منصة الإنجاز</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         body { background: #0f172a; color: #fbbf24; font-family: 'Cairo', sans-serif; }
         .main-card { background: #1e293b; border: 1px solid #334155; border-radius: 20px; padding: 25px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
-        .mood-btn { font-size: 1.8rem; cursor: pointer; opacity: 0.3; filter: grayscale(100%); transition: 0.3s; }
-        .mood-btn.active { opacity: 1; filter: grayscale(0%); transform: scale(1.2); text-shadow: 0 0 15px #fbbf24; }
+        .mood-btn { font-size: 1.8rem; cursor: pointer; opacity: 0.3; transition: 0.3s; }
+        .mood-btn.active { opacity: 1; transform: scale(1.2); text-shadow: 0 0 15px #fbbf24; }
         .hidden { display: none; }
-        .azkar-item { background: rgba(0,0,0,0.2); border: 1px solid #fbbf2433; padding: 15px; border-radius: 15px; margin-bottom: 10px; font-size: 14px; line-height: 1.6; color: white; }
     </style>
 </head>
 <body class="p-4 md:p-10">
@@ -21,7 +19,7 @@
     <div id="home-page" class="max-w-xl mx-auto">
         <div class="flex justify-between items-center mb-6">
             <h1 class="text-2xl font-bold italic">med-planner</h1>
-            <p id="date-display" class="text-sm font-bold text-amber-500"></p>
+            <p id="current-date" class="text-sm font-bold text-amber-500"></p>
         </div>
 
         <div class="main-card">
@@ -37,24 +35,24 @@
                         </div>
                     </div>
                     <div class="flex gap-2">
-                        <button onclick="showSection('morning-azkar')" class="bg-amber-500/10 border border-amber-500/30 px-3 py-1 rounded-lg text-[10px] font-bold">☀️ أذكار الصباح</button>
+                        <button onclick="showSection('morning-azkar')" class="bg-amber-500/10 border border-amber-500/30 px-3 py-1 rounded-lg text-[10px] font-bold font-bold">☀️ أذكار الصباح</button>
                         <button onclick="showSection('evening-azkar')" class="bg-amber-500/10 border border-amber-500/30 px-3 py-1 rounded-lg text-[10px] font-bold">🌙 أذكار المساء</button>
                     </div>
                 </div>
                 <div class="text-center bg-black/30 p-3 rounded-xl border border-amber-500/20 w-24">
                     <p class="text-[9px] mb-1">السبحة</p>
-                    <p id="t-count" class="text-2xl font-bold text-white">0</p>
+                    <p id="t-count" class="text-2xl font-bold text-white text-white">0</p>
                     <button onclick="incT()" class="bg-amber-500 text-black text-[10px] px-2 py-1 rounded font-bold w-full">تسبيح</button>
                 </div>
             </div>
 
-            <div class="mb-6 p-4 bg-black/20 rounded-xl border-r-4 border-amber-500 italic text-center">
+            <div class="mb-6 p-4 bg-black/20 rounded-xl border-r-4 border-amber-500 italic text-center text-center">
                 <p id="daily-ayah" class="text-sm text-white mb-1"></p>
                 <p id="daily-wisdom" class="text-[10px] text-amber-200/50"></p>
             </div>
 
             <div class="grid grid-cols-2 gap-4 mb-8">
-                <button onclick="showSection('timer-sec')" class="bg-sky-900/20 border border-sky-500/30 p-4 rounded-xl text-sky-400 font-bold text-sm">⏱️ مؤقت التركيز</button>
+                <button onclick="showSection('timer-sec')" class="bg-sky-900/20 border border-sky-500/30 p-4 rounded-xl text-sky-400 font-bold text-sm text-sm">⏱️ مؤقت التركيز</button>
                 <button onclick="showSection('bmi-sec')" class="bg-emerald-900/20 border border-emerald-500/30 p-4 rounded-xl text-emerald-400 font-bold text-sm">⚖️ حاسبة الكتلة</button>
             </div>
 
@@ -63,83 +61,60 @@
                 <div class="space-y-4">
                     <div class="flex items-center gap-3"><input type="checkbox" checked class="w-4 h-4 accent-amber-500"><span>نية الصيام اليوم</span></div>
                     <div class="flex items-center gap-3"><input type="checkbox" class="w-4 h-4 accent-amber-500"><span>الورد القرآني اليومي</span></div>
-                    <div class="flex items-center gap-3"><input type="checkbox" class="w-4 h-4 accent-amber-500"><input type="text" placeholder="مادة المذاكرة / مهمة..." class="bg-transparent border-b border-white/10 outline-none text-sm w-full text-white"></div>
+                    <div class="flex items-center gap-3"><input type="checkbox" class="w-4 h-4 accent-amber-500"><input type="text" placeholder="مادة المذاكرة / مهمة..." class="bg-transparent border-b border-white/10 outline-none text-sm w-full"></div>
                 </div>
             </div>
         </div>
-    </div>
 
-    <div id="morning-azkar" class="hidden max-w-xl mx-auto">
-        <button onclick="showSection('home-page')" class="text-amber-500 mb-6 text-sm">← عودة</button>
-        <div class="main-card">
-            <h2 class="text-xl font-bold mb-6 text-center">☀️ أذكار الصباح</h2>
-            <div class="azkar-item">"أصبحنا وأصبح الملك لله، والحمد لله، لا إله إلا الله وحده لا شريك له"</div>
-            <div class="azkar-item">"اللهم بك أصبحنا وبك أمسينا وبك نحيا وبك نموت وإليك النشور"</div>
-            <div class="azkar-item">"آية الكرسي: اللَّهُ لَا إِلَهَ إِلَّا هُوَ الْحَيُّ الْقَيُّومُ..."</div>
+        <div class="mt-8 text-center opacity-40">
+            <img src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fmedhub-zone.github.io%2Fmed-planner%2F&count_bg=%23FBBF24&title_bg=%23555555&title=Visitors" class="mx-auto scale-75">
         </div>
     </div>
 
-    <div id="evening-azkar" class="hidden max-w-xl mx-auto">
-        <button onclick="showSection('home-page')" class="text-amber-500 mb-6 text-sm">← عودة</button>
-        <div class="main-card">
-            <h2 class="text-xl font-bold mb-6 text-center">🌙 أذكار المساء</h2>
-            <div class="azkar-item">"أرقينا وأمسى الملك لله، والحمد لله"</div>
-            <div class="azkar-item">"اللهم ما أمسى بي من نعمة أو بأحد من خلقك فمنك وحدك لا شريك لك"</div>
-        </div>
-    </div>
-
-    <div id="timer-sec" class="hidden max-w-xl mx-auto">
-        <button onclick="showSection('home-page')" class="text-amber-500 mb-6 text-sm">← عودة</button>
-        <div class="main-card text-center py-16">
-            <h2 class="text-2xl font-bold mb-8 text-sky-400">مؤقت بومودورو</h2>
+    <div id="timer-sec" class="hidden max-w-xl mx-auto text-center">
+        <button onclick="showSection('home-page')" class="text-amber-500 mb-6">← عودة</button>
+        <div class="main-card py-16">
+            <h2 class="text-2xl font-bold mb-8 text-sky-400 text-sky-400">مؤقت بومودورو</h2>
             <div id="t-display" class="text-7xl font-mono mb-10 text-white">25:00</div>
-            <button onclick="startTimer()" id="timer-btn" class="bg-sky-600 text-white px-12 py-3 rounded-full font-bold shadow-lg shadow-sky-900/40">ابدأ الآن</button>
+            <button onclick="startTimer()" id="timer-btn" class="bg-sky-600 text-white px-12 py-3 rounded-full font-bold">ابدأ</button>
         </div>
     </div>
 
     <div id="bmi-sec" class="hidden max-w-xl mx-auto">
-        <button onclick="showSection('home-page')" class="text-amber-500 mb-6 text-sm">← عودة</button>
+        <button onclick="showSection('home-page')" class="text-amber-500 mb-6">← عودة</button>
         <div class="main-card">
-            <h2 class="text-2xl font-bold mb-8 text-emerald-400 text-center">حاسبة الكتلة (BMI)</h2>
+            <h2 class="text-2xl font-bold mb-8 text-emerald-400 text-center text-center">حاسبة الكتلة (BMI)</h2>
             <div class="space-y-5">
-                <input id="w" type="number" placeholder="الوزن (كجم)" class="w-full bg-black/30 p-4 rounded-xl border border-white/10 outline-none text-white">
-                <input id="h" type="number" placeholder="الطول (سم)" class="w-full bg-black/30 p-4 rounded-xl border border-white/10 outline-none text-white">
-                <button onclick="calculateBMI()" class="w-full bg-emerald-600 text-white py-4 rounded-xl font-bold">احسب النتيجة</button>
-                <div id="bmi-result" class="text-center text-lg font-bold text-amber-400"></div>
-                <p class="text-[10px] text-center opacity-40 italic">المعدل الطبيعي العالمي للكتلة: 18.5 - 24.9</p>
+                <input id="w" type="number" placeholder="الوزن (كجم)" class="w-full bg-black/30 p-4 rounded-xl border border-white/10 text-white">
+                <input id="h" type="number" placeholder="الطول (سم)" class="w-full bg-black/30 p-4 rounded-xl border border-white/10 text-white text-white">
+                <button onclick="calcBMI()" class="w-full bg-emerald-600 text-white py-4 rounded-xl font-bold">احسب</button>
+                <div id="bmi-res" class="text-center text-lg font-bold"></div>
+                <p class="text-[10px] text-center opacity-50">المعدل الطبيعي: 18.5 - 24.9</p>
             </div>
         </div>
     </div>
 
     <script>
-        // نظام التنقل بين الأقسام
         function showSection(id) {
             document.querySelectorAll('body > div').forEach(div => div.classList.add('hidden'));
             document.getElementById(id).classList.remove('hidden');
-            window.scrollTo(0,0);
         }
 
-        // البيانات المتغيرة (التاريخ، الآية، الحكمة)
-        const ayahs = ["{وَاسْتَعِينُوا بِالصَّبْرِ وَالصَّلَاةِ}", "{إِنَّ مَعَ الْعُسْرِ يُسْرًا}", "{وَقُل رَّبِّ زِدْنِي عِلْمًا}"];
-        const wisdoms = ["الوقت كالسيف إن لم تقطعه قطعك", "النجاح هو مجموع مجهودات صغيرة تتكرر كل يوم"];
         const today = new Date();
-        const dayOfYear = Math.floor((today - new Date(today.getFullYear(), 0, 0)) / 86400000);
+        document.getElementById('current-date').innerText = today.toLocaleDateString('ar-EG', {day:'numeric', month:'long'});
+        document.getElementById('daily-ayah').innerText = "{وَقُل رَّبِّ زِدْنِي عِلْمًا}";
+        document.getElementById('daily-wisdom').innerText = "حكمة اليوم: النجاح نتيجة مجهودات صغيرة تتكرر يومياً";
 
-        document.getElementById('date-display').innerText = today.toLocaleDateString('ar-EG', {day:'numeric', month:'long'});
-        document.getElementById('daily-ayah').innerText = ayahs[dayOfYear % ayahs.length];
-        document.getElementById('daily-wisdom').innerText = `حكمة اليوم: ${wisdoms[dayOfYear % wisdoms.length]}`;
-
-        // المود والسبحة
         function setMood(el) {
             document.querySelectorAll('.mood-btn').forEach(b => b.classList.remove('active'));
             el.classList.add('active');
         }
+
         function incT() {
             let c = document.getElementById('t-count');
             c.innerText = parseInt(c.innerText) + 1;
         }
 
-        // برمجة المؤقت
         let timer;
         function startTimer() {
             let sec = 25 * 60;
@@ -148,19 +123,17 @@
                 sec--;
                 let m = Math.floor(sec/60); let s = sec%60;
                 document.getElementById('t-display').innerText = `${m}:${s < 10 ? '0'+s : s}`;
-                if(sec <= 0) { clearInterval(timer); alert("انتهى وقت التركيز!"); }
+                if(sec <= 0) { clearInterval(timer); alert("انتهى الوقت!"); }
             }, 1000);
-            document.getElementById('timer-btn').innerText = "جاري الحساب...";
         }
 
-        // برمجة BMI
-        function calculateBMI() {
+        function calcBMI() {
             let weight = document.getElementById('w').value;
             let height = document.getElementById('h').value / 100;
             if(weight && height) {
                 let res = (weight / (height * height)).toFixed(1);
                 let status = res < 18.5 ? "نحافة" : res < 25 ? "وزن مثالي" : "زيادة وزن";
-                document.getElementById('bmi-result').innerText = `نتيجتك: ${res} (${status})`;
+                document.getElementById('bmi-res').innerText = `الكتلة: ${res} (${status})`;
             }
         }
     </script>
